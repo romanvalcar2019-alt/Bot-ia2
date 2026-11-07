@@ -1,14 +1,42 @@
-SafeVision - Bot-ia2
+🛡️ SafeVision - Bot-ia2
 
-SafeVision es un bot de Discord impulsado por inteligencia artificial diseñado para analizar imágenes adjuntas en los chats, detectar contenido sensible o inapropiado y moderarlo de manera automática en tiempo real.
+SafeVision es un bot de Discord de código abierto impulsado por inteligencia artificial y desarrollado en Python. Su objetivo principal es actuar como un sistema automatizado de moderación de contenido en tiempo real, capaz de interceptar, guardar temporalmente y analizar imágenes adjuntas enviadas por los usuarios en cualquier canal del servidor.
 
-Comenzando 🚀
+🌟 Vista Previa y Demostración
+
+Aquí puedes ver a SafeVision en acción procesando y evaluando imágenes en Discord:
+
+(Si quieres probar el bot en vivo, puedes sumarlo a tu servidor mediante este Enlace de Invitación de SafeVision)
+
+🔬 ¿Cómo Funciona la IA?
+
+SafeVision utiliza un módulo especializado en visión por computadora (model.py) para clasificar imágenes según su contenido:
+
+Recepción del Evento: El bot detecta el comando $check junto con una imagen adjunta enviada en Discord.
+
+Descarga Temporal: Guarda el archivo de manera local (./nombre_imagen.png) para permitir su inspección.
+
+Clasificación por IA: La función get_class(file_path) procesa la imagen a través del modelo de aprendizaje automático previamente entrenado.
+
+Toma de Decisiones:
+
+Inapropiado/Sensible: Si la categoría detectada es "Inapropiado", el bot elimina el mensaje automáticamente del canal y envía una advertencia al usuario citando el porcentaje de confianza alcanzado.
+
+Seguro: Si la imagen es segura, confirma la clasificación y mantiene la conversación fluida.
+
+📸 Capturas de Pantalla
+
+1. Moderación Automatizada (Contenido Inapropiado)
+
+2. Confirmación de Imagen Segura
+
+🚀 Comenzando
 
 Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas.
 
 Mira la sección de Despliegue para conocer cómo desplegar el proyecto en producción.
 
-Pre-requisitos 📋
+📋 Pre-requisitos
 
 Qué cosas necesitas para instalar el software y cómo instalarlas:
 
@@ -23,7 +51,7 @@ Para comprobar tu versión de Python instalada:
 python --version
 
 
-Instalación 🔧
+🔧 Instalación
 
 Una serie de ejemplos paso a paso que te dicen lo que debes ejecutar para tener un entorno de desarrollo ejecutándose:
 
@@ -33,39 +61,39 @@ git clone https://github.com/romanvalcar2019-alt/Bot-ia2.git
 cd Bot-ia2
 
 
-Instala la librería de Discord para Python:
+Instala las dependencias necesarias:
 
 pip install discord.py typing_extensions
 
 
 Verifica el módulo de IA:
-Asegúrate de que el archivo model.py esté presente en la raíz del proyecto con la función get_class(file_path) implementada.
+Asegúrate de que el archivo model.py esté presente en la raíz del proyecto con la función get_class(file_path) implementada y con las librerías del modelo de IA instaladas (por ejemplo, TensorFlow, PyTorch o Scikit-Learn según corresponda).
 
-Configura el Token:
-Asegúrate de configurar tu token de bot en main.py o mediante variables de entorno antes de ejecutar.
+Configura tu Token de Discord:
+Modifica la última línea en main.py con tu token o configúralo mediante variables de entorno (BOT_TOKEN).
 
 Inicia el bot:
 
 python main.py
 
 
-Ejemplo de uso (Demo) 💡
+💡 Ejemplo de Uso (Demo)
 
 Invita a tu bot a un servidor de pruebas en Discord.
 
 Sube una imagen a un canal de texto y añade el comando $check en el comentario del mensaje.
 
-El bot guardará temporalmente la imagen, la procesará con el modelo de IA (get_class) y responderá:
+El bot descargará la imagen, ejecutará get_class y responderá:
 
 Si es segura: ✅ Imagen segura. Clasificada como: Normal (95% de certeza).
 
 Si es sensible: ⚠️ Tu imagen fue eliminada por ser clasificada como sensible/inapropiada (98% de certeza) y borrará el mensaje.
 
-Ejecutando las pruebas ⚙️
+⚙️ Ejecutando las Pruebas
 
 Las pruebas de este bot verifican tanto la conexión a la API de Discord como la precisión del modelo de clasificación de imágenes.
 
-Analice las pruebas end-to-end 🔩
+🔩 Pruebas End-to-End
 
 Explica qué verifican estas pruebas y por qué:
 
@@ -73,7 +101,7 @@ Verifican que el bot reciba el adjunto, lo almacene localmente en ./, lo pase co
 
 Ejemplo: Enviar una imagen de prueba mediante el comando $check y verificar en la consola de Python que on_ready() esté activo y la predicción devuelva la tupla (nombre_clase, porcentaje_confianza).
 
-Y las pruebas de estilo de codificación ⌨️
+⌨️ Pruebas de Estilo de Codificación
 
 Explica qué verifican estas pruebas y por qué:
 
@@ -81,37 +109,43 @@ Verifican que el código siga las convenciones Estándar de Python (PEP 8) y el 
 
 Ejemplo: Ejecutar flake8 o black para asegurar que las sangrías y la estructura de los eventos on_ready y @bot.command() sean correctas.
 
-Despliegue 📦
+📦 Despliegue
 
 Para mantener el bot online 24/7 en un servidor de producción:
 
 Puedes alojarlo en servicios como Railway, Render, Heroku o un VPS en la nube (AWS, DigitalOcean).
 
-Recuerda nunca expuesto públicamente tu token de Discord en el código subido al repositorio. Utiliza variables de entorno (os.getenv("BOT_TOKEN")).
+Seguridad: Recuerda nunca exponer públicamente tu token de Discord en el código subido al repositorio. Utiliza variables de entorno (os.getenv("BOT_TOKEN")).
 
-Construido con 🛠️
+🛠️ Construido Con
 
-Python - Lenguaje de programación principal.
+Python 3 - Lenguaje de programación principal.
 
 discord.py - Librería para interactuar con la API de Discord.
 
 Módulo IA (model.py) - Módulo personalizado para la clasificación y evaluación de imágenes.
 
-Contribuyendo 🖇️
+🖇️ Contribuyendo
 
-Por favor lee el CONTRIBUTING.md para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
+Por favor lee el archivo CONTRIBUTING.md para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
 
-Wiki 📖
+📖 Wiki
 
 Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra Wiki.
 
-Versionado 📌
-
-Usamos SemVer para el versionado. Para todas las versiones disponibles, mira los tags en este repositorio.
-
-Autores ✒️
+✒️ Autores
 
 Roman Alcar - Trabajo Inicial y Desarrollo - romanvalcar2019-alt
+
+
+
+
+
+
+🎁 Expresiones de Gratitud
+
+
+
 
 
 
